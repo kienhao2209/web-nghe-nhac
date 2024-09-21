@@ -33,7 +33,7 @@ export default function Register() {
   };
 
   const handleValidation = () => {
-    const { password, confirmPassword, username ,email} = values;
+    const { password, confirmPassword, username, email } = values;
     if (password !== confirmPassword) {
       console.error("Password and confirm password should be the same.", toastOptions);
       return false;
@@ -50,19 +50,19 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      const { username, password , email } = values;
+      const { username, password, email } = values;
       try {
         const response = await axios.post(registerRoute, {
           username,
           email,
           password,
         });
-        
+
         if (response && response.data && response.data.status === false) {
           console.error(response.data.msg, toastOptions);
-          
+
         }
-        
+
         if (response && response.data && response.data.status === true) {
           localStorage.setItem(
             process.env.REACT_APP_LOCALHOST_KEY,
@@ -76,7 +76,7 @@ export default function Register() {
       }
     }
   };
-  
+
   return (
     <FormContainer>
       <form onSubmit={handleSubmit}>
@@ -90,7 +90,7 @@ export default function Register() {
           value={values.username}
           onChange={handleChange}
         />
-         <input
+        <input
           type="text"
           placeholder="email"
           name="email"

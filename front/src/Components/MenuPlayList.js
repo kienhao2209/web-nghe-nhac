@@ -3,6 +3,7 @@ import "../styles/LeftMenu.css";
 import { FaPlus } from "react-icons/fa";
 import { BsMusicNoteList, BsTrash } from "react-icons/bs";
 import { PlayList } from "./PlayList";
+//import { PlayList } from '../path/to/playlist';
 
 function MenuPlayList() {
   return (
@@ -22,7 +23,7 @@ function MenuPlayList() {
                 <BsMusicNoteList />
               </i>
               <p>{list.name}</p>
-            
+
             </div>
           ))}
       </div>

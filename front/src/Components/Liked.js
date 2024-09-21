@@ -17,11 +17,15 @@ function Liked(props) {
 
   useEffect(() => {
     // Filter songs based on favorite IDs
-    const filteredSongs = props.songs.filter(song => 
+    const filteredSongs = props.songs.filter(song =>
       props.favorites.some(favorite => favorite.song_id === song._id)
     );
     setFavoritesSongs(filteredSongs);
   }, [props.favorites, props.songs]);
+
+  useEffect(() => {
+    console.log("currentSlide:", currentSlide);
+  }, [currentSlide]); // Effect sẽ được kích hoạt mỗi khi currentSlide thay đổi
 
   const changeFavourite = (id) => {
     // Update favorite status
@@ -36,23 +40,21 @@ function Liked(props) {
     setCurrentSlide((prev) => (prev === favoritesSongs.length - 1 ? 0 : prev + 1)); // Update current state
     console.log("Current slide:", currentSlide);
   };
-  
+
   const prevSlide = () => {
     console.log("Previous slide clicked");
-    setCurrentSlide((prev) => (prev === 0 ? favoritesSongs.length  - 1 : prev - 1)); // Update current state
+    setCurrentSlide((prev) => (prev === 0 ? favoritesSongs.length - 1 : prev - 1)); // Update current state
     console.log("Current slide:", currentSlide);
   };
   return (
-   <div className="mainContainer">
-
-      <Header />
-      
+    <div className="mainContainer">
+      <Header />  
       <br /><br /><br />
-      
-   
+
+
       {favoritesSongs.length > 0 && <AudioList item={favoritesSongs} />}
     </div>
-   
+
   );
 }
 
