@@ -14,6 +14,8 @@ const categoryRouter = require("./routes/category");
 const songRouter = require("./routes/song");
 const favoriteRouter = require("./routes/favorite");
 const multer = require("multer");
+const bodyParser = require('body-parser');
+const playlistRoutes = require('./routes/playlist');
 
 // Load environment variables
 require("dotenv").config();
@@ -65,6 +67,8 @@ app.use("/api", adminRouter);
 app.use("/api", songRouter);
 app.use("/api", categoryRouter);
 app.use("/api", favoriteRouter);
+app.use(bodyParser.json());
+app.use('/api', playlistRoutes);
 // Start server
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
